@@ -1,8 +1,22 @@
 'use strict'
-import students from "./students.js"
+import {students as studentArray} from "./students.js"
 
 
+
+let students = []
 document.addEventListener("DOMContentLoaded",(e)=>{
+    let storedStudents = localStorage.getItem("students");
+
+    try {
+        students = storedStudents ? JSON.parse(storedStudents) : [];
+    } catch (error) {
+        console.error("Error parsing students:", error);
+        students = [];
+    }
+    if (!students.length) {
+        localStorage.setItem("students", JSON.stringify(studentArray));
+        students = studentArray;  // Update the students variable in memory
+    }
     const loginForm = document.getElementById("login-form")
     loginForm.addEventListener("submit",handleLoginForm)
 })

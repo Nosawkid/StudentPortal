@@ -1,4 +1,7 @@
-import students from "./students.js";
+// import {students } from "./students.js";
+
+const students = JSON.parse(localStorage.getItem("students"))
+
 
 const params = new URLSearchParams(window.location.search)
 if(!params)
